@@ -26,10 +26,10 @@ unsigned long long mark(
         unsigned long long c,
         unsigned long long d
         ){
-    auto dividend = a*2 + b*3 + c*4 + d*5;
+    auto dividend = a*1 + b*2 + c*3 + d*4;
     auto divisor = a + b + c + d;
     auto ceilPart = dividend/divisor;
-    auto fraqDividend = dividend - ceilPart*divisor;
+    auto fraqDividend = dividend%divisor;
 
     auto ans = ceilPart;
     if(2*fraqDividend >= divisor)
@@ -45,9 +45,9 @@ void parseFile(std::istream & input, std::ostream & output){
     auto d = binSearchLowerBound(
             [](unsigned long long d){return d;},
                 [&a, &b, &c](unsigned long long d){
-                    return mark(a,b,c,d)<=4;
+                    return mark(a,b,c,d)<3;
                 },
                     left, right);
-
+    while (mark(a,b,c,d)<3)++d;
     output << d;
 }

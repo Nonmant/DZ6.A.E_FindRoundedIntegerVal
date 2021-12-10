@@ -43,14 +43,23 @@ TEST_CASE("3.5 round to 4", ""){
     REQUIRE(output.str() == "1"
     );
 }
-/*
-TEST_CASE("test 3", ""){
+
+TEST_CASE("ranges", ""){
     std::stringstream input(
-            "11 3 2 21 25"
+            "1000000000000000 1000000000000000 1000000000000000"
     );
     std::stringstream output;
     parseFile(input,output);
-    REQUIRE(output.str() == "2"
+    REQUIRE(output.str() == "1000000000000000"
     );
 }
-*/
+
+TEST_CASE("no extra marks", ""){
+    std::stringstream input(
+            "0 0 33"
+    );
+    std::stringstream output;
+    parseFile(input,output);
+    REQUIRE(output.str() == "0"
+    );
+}
